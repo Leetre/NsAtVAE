@@ -12,8 +12,8 @@ def load_data(path):
     data = np.load(path+'/'+'data.npy')
     return data
 
-def load_model():
-    with open(args.config, 'r') as config_file:
+def load_model(config_f):
+    with open(config_f, 'r') as config_file:
         config = yaml.load(config_file)
         model_params = config['model']
         model = NsAtVAE(**model_params)
@@ -21,10 +21,11 @@ def load_model():
 
 def train(args):
     datapath = args.datapath
+    config_f = args.config
     epochs = args.epochs
     data = load_data(datapath)
     data_num = data.shape[0]
-    model = load_model()
+    model = load_model(config_f)
     print(model)
 
     # optimizer and loss
@@ -49,7 +50,7 @@ def train(args):
             current_loss.backward()
             optimizer.step()
 
-            print(current_loss.item())
+            print(("epoch %d: data %d: current loss is %.5f")%(epoch+1, num, current_loss.item()))
 
         torch.save(model.state_dict(), 'model/epoch'+str(epoch)+'.pth')
     # print(model)
