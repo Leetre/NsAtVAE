@@ -1,0 +1,5 @@
+model:
+  embedding_size: 8
+  drop_out: 0.2
+  num_heads: 1
+  num_components: 8
