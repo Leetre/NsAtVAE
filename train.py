@@ -6,7 +6,7 @@ import loss
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='config.yml')
 parser.add_argument('--datapath', type=str, default='data/valve1')
-parser.add_argument('--epochs', type=int, default=3)
+parser.add_argument('--epochs', type=int, default=20)
 
 def load_data(path):
     data = np.load(path+'/'+'data.npy')
@@ -52,7 +52,7 @@ def train(args):
 
             print(("epoch %d: data %d: current loss is %.5f")%(epoch+1, num, current_loss.item()))
 
-        torch.save(model.state_dict(), 'model/epoch'+str(epoch)+'.pth')
+        torch.save(model.state_dict(), 'model/epoch'+str(epoch+1)+'.pth')
     # print(model)
     # print(data.shape[0])
 
