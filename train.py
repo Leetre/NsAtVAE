@@ -28,7 +28,7 @@ def train(args):
     model = load_model(config_f)
     print(model)
 
-    # optimizer and loss
+    # optimizer
     optimizer = torch.optim.Adam(model.parameters())
 
     # training
