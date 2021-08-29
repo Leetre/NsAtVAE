@@ -12,7 +12,7 @@ class GMM(nn.Module):
         )
 
     def compute_gmm_params(self, x):
-        z = x.squeeze()
+        z = x.squeeze(0)
         seq_len = z.size()[0]
         component_weight = self.component_weight(z)
         component_weight_ = torch.sum(component_weight, 0).view(1, -1) / torch.tensor([seq_len], dtype=torch.float)
@@ -25,7 +25,7 @@ class GMM(nn.Module):
         return component_weight_, mu, cov
 
     def compute_energy(self, x, phi, mu, cov):
-        z = x.squeeze()
+        z = x.squeeze(0)
         k, D, _ = cov.size()
         z_mu = (z.unsqueeze(1)- mu.unsqueeze(0))
 
