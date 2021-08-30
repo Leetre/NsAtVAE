@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='config.yml')
 parser.add_argument('--datapath', type=str, default='data/valve1')
 parser.add_argument('--labelpath', type=str, default='data/valve1')
-parser.add_argument('--modelpath', type=str, default='model/epoch10.pth')
+parser.add_argument('--modelpath', type=str, default='model/epochSKAB110.pth')
 
 def load_data(path):
     data = np.load(path+'/'+'data.npy')
